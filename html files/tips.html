@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tips to solve dsa </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        a {
+            flex-grow: 1;
+            text-decoration: none;
+            color: #333;
+        }
+        input[type="checkbox"] {
+            transform: scale(1.3);
+        }
+        .tip_list {
+            margin-top: 20px;
+            padding: 0;
+            list-style-type: none;
+            align-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>TIPS</h1>
+
+
+
+<ul id="tip_list ">
+    <p>If input array is sorted then <br>
+- Binary search <br>
+- Two pointers <br>
+
+If asked for all permutations/subsets then <br>
+- Backtracking <br>
+
+If given a tree then<br>
+- DFS <br>
+- BFS <br>
+
+If given a graph then <br>
+- DFS <br>
+- BFS <br>
+
+If given a linked list then <br>
+- Two pointers <br>
+
+If recursion is banned then <br>
+- Stack <br>
+
+If must solve in-place then <br>
+- Swap corresponding values <br>
+- Store one or more different values in the same pointer <br>
+
+If asked for maximum/minimum subarray/subset/options then <br>
+- Dynamic programming <br>
+- Sliding window <br>
+
+If asked for top/least K items then <br>
+- Heap <br>
+- QuickSelect <br>
+
+If asked for common strings then <br>
+- Map <br>
+- Trie <br>
+
+Else <br>
+- Map/Set for O(1) time & O(n) space <br>
+- Sort input for O(nlogn) time and O(1) space</p>
+</ul>
+
+<script>
+    
+
+    const list = document.getElementById("question-list");
+
+    questions.forEach((q, index) => {
+        const li = document.createElement("li");
+
+        const a = document.createElement("a");
+        a.href = q.link;
+        a.textContent = q.title;
+        a.target = "_blank";
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = `done-${index}`;
+
+        // Load saved state
+        if (localStorage.getItem(`done-${index}`) === "true") {
+            checkbox.checked = true;
+        }
+
+        // Save state on change
+        checkbox.addEventListener("change", () => {
+            localStorage.setItem(`done-${index}`, checkbox.checked);
+            updateProgress();
+        });
+
+        li.appendChild(a);
+        li.appendChild(checkbox);
+        list.appendChild(li);
+    });
+
+    function updateProgress() {
+        const total = questions.length;
+        let done = 0;
+        for (let i = 0; i < total; i++) {
+            if (localStorage.getItem(`done-${i}`) === "true") {
+                done++;
+            }
+        }
+        const percent = Math.round((done / total) * 100);
+        const bar = document.getElementById("progress-bar");
+        bar.style.width = percent + "%";
+        bar.textContent = `${percent}% Done`;
+    }
+
+    updateProgress();
+</script>
+
+</body>
+</html>

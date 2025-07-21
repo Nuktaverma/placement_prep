@@ -1,0 +1,150 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #87ceeb, #e0f6ff);
+      color: #1a252f;
+      min-height: 100vh;
+    }
+    .dashboard-container {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 30px;
+      position: relative;
+      min-height: 100vh;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2 {
+      text-align: center;
+      color: #1a252f;
+    }
+    h1 {
+      margin-top: 20px;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 1.8em;
+      margin-bottom: 30px;
+    }
+    .welcome {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      padding: 10px;
+    }
+    #username {
+      color: #2c5282;
+      font-weight: bold;
+      font-size: 1.4em;
+    }
+    .cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(3px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.25);
+    }
+    .card span {
+      font-size: 2em;
+      display: block;
+      margin-bottom: 10px;
+      color: #2c5282;
+    }
+    .logout-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
+    }
+    .logout-btn {
+      padding: 10px 20px;
+      background: linear-gradient(45deg, #e53e3e, #c53030);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    .logout-btn:hover {
+      background: linear-gradient(45deg, #c53030, #9b2c2c);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    @media (max-width: 600px) {
+      .dashboard-container {
+        padding: 20px;
+      }
+      .welcome {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .logout-container {
+        top: 10px;
+        right: 10px;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <h1>Welcome to Smart Prep Dashboard</h1>
+    <div class="welcome">
+      <h2>Let's Start, <span id="username"></span></h2>
+    </div>
+    <div class="logout-container">
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+    <div class="cards">
+      <div class="card" onclick="location.href='topic.html'"><span>📘</span> Important Topics</div>
+      <div class="card" onclick="location.href='imp100.html'"><span>📝</span> Important 100 Questions</div>
+      <div class="card" onclick="location.href='imp150.html'"><span>🥇</span> Top 150 Questions</div>
+      <div class="card" onclick="location.href='imp25.html'"><span>🔄</span> Tips</div>
+    </div>
+  </div>
+  <script>
+    const user = localStorage.getItem('currentUser');
+    if (!user) window.location.href = 'login.html';
+    document.getElementById('username').innerText = user;
+
+    function logout() {
+      localStorage.removeItem('currentUser');
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>

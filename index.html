@@ -1,0 +1,122 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #5e509f, #00d2ff);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .auth-container {
+      max-width: 400px;
+      width: 100%;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+    h2 {
+      color: #fff;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 10px;
+      border-radius: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.3);
+      color: #fff;
+      font-size: 1.1em;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+    }
+    input::placeholder {
+      color: #ddd;
+    }
+    input:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 20px 0;
+      background: linear-gradient(45deg, #e74c3c, #c0392b);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.2em;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background: linear-gradient(45deg, #c0392b, #a93226);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+    p {
+      color: #fff;
+      font-size: 1em;
+    }
+    a {
+      color: #ffeb3b;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #fdd835;
+    }
+    @media (max-width: 500px) {
+      .auth-container {
+        padding: 20px;
+      }
+      h2 {
+        font-size: 2em;
+      }
+      input, button {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-container">
+    <h2>Login</h2>
+    <input type="text" id="login-username" placeholder="Username" />
+    <input type="password" id="login-password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+    <p>Don't have an account? <a href="./html files/register.html">Register</a></p>
+  </div>
+  <script>
+    function login() {
+      const uname = document.getElementById('login-username').value;
+      const pass = document.getElementById('login-password').value;
+      const users = JSON.parse(localStorage.getItem('users') || '{}');
+      if (users[uname] === pass) {
+        localStorage.setItem('currentUser', uname);
+        window.location.href = './html files/dashboard.html';
+      } else {
+        alert('Invalid credentials');
+      }
+    }
+  </script>
+</body>
+</html>
